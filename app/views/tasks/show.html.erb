@@ -1,0 +1,23 @@
+<h1> <%= @task.name %> </h1> 
+
+<div class="task_description">
+  <b> Description: </b> <%= @task.description %>
+</div>
+
+<%= link_to 'Edit', edit_project_task_path(@project, @task), :class => 'btn' %>
+<%= link_to 'Destroy', project_task_path(@project, @task), :confirm => 'Are you sure?',
+  :method => :delete, :class => 'btn btn-danger' %>
+
+<h2> Task Progress </h2>
+
+<% unless @task.has_wip? %>
+  <h3> You have been working a total of... </h3> <%= @task.time_spent %> </h2>
+  <%= form_for [@project, @task, @task.work_intervals.build] do |f| %>
+    <%= f.submit 'Start Working!', :class => 'btn btn-success btn-large' %>
+  <% end %>
+<% else %>
+  <%= form_for [@project, @task, @work_interval] do |f| %>
+    <%= f.submit 'Stop Working!', :class => 'btn btn-danger btn-large' %>
+  <% end %>
+<% end %>
+

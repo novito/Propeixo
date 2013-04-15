@@ -1,0 +1,47 @@
+<h1> Project: <%= @project.name %> </h1>
+
+<p class="lead">
+  <%= @project.description %>
+</p>
+
+<p>
+  <b> Total Time Spent: </b> <%= time_with_adaptive_units(@project.time_spent) %> </b>
+</p>
+
+
+<div class="actions">
+  <%= link_to 'Add Task to Project', new_project_task_path(@project), :class => 'btn btn-primary'%>
+  <%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn'%>
+  <%= link_to 'Destroy Project', @project, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %>
+</div>
+
+<div class="task-container">
+
+  <% if @tasks %> 
+    <h1> List of Tasks </h1>
+    <% @tasks.each do |task| %>
+      <p>
+        <b> Name: </b> <%= task.name %><br>
+        <b> Time spent: </b> <%= time_with_adaptive_units(task.time_spent) %><br>
+      </p>
+      <div class="actions">
+        <%= link_to 'Edit Task', edit_project_task_path(@project, task), :class => 'btn'%>
+        <%= link_to 'Destroy Task', [@project, task], :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %>
+        <% unless task.has_wip? %>
+          <%= form_for [@project, task, task.work_intervals.build] do |f| %>
+            <%= f.submit 'Start Working!', :class => 'btn btn-success' %>
+          <% end %>
+        <% else %>
+          <%= form_for [@project, task, task.active_work_interval] do |f| %>
+            <%= f.submit 'Stop Working!', :class => 'btn btn-danger' %>
+          <% end %>
+        <% end %>
+      </div>
+      <hr>
+    <% end %>
+  <% else %>
+    <div> Uh, oh... No tasks yet... </div>
+  <% end %>
+</div>
+
+

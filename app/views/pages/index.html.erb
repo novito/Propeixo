@@ -1,0 +1,4 @@
+<h2> Manage your projects. Easily. </h2>
+<% if user_signed_in? %>
+  <%= link_to 'New Project', new_project_path %>
+<% end %>

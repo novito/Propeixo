@@ -1,0 +1,22 @@
+<h1> Projects </h1>
+<% unless @projects.empty? %>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+  <% @projects.each do |project| %>
+    <tr>
+      <td><%= project.name %></td>
+      <td><%= link_to 'Show', project %></td>
+      <td><%= link_to 'Edit', edit_project_path(project) %></td>
+      <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <h2> It seems you don't have projects yet... </h2>
+<% end %>
+
+<%= link_to 'New Project', new_project_path %>
+
