@@ -15,10 +15,10 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem "therubyracer"
-  gem "less-rails"
 end
 
 gem 'jquery-rails'
+gem "less-rails"
 gem "twitter-bootstrap-rails", "~> 2.2.6"
 
 group :development, :test do
