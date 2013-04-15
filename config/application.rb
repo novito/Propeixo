@@ -75,5 +75,9 @@ module Propeixo
       g.javascripts = false
       g.helper = false
     end
+
+    # Prevent Rails environment to be loaded on precompile
+    config.assets.initialize_on_precompile = false
+
   end
 end
