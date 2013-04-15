@@ -16,10 +16,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem "therubyracer"
   gem "less-rails"
-  gem "twitter-bootstrap-rails", "~> 2.2.6"
 end
 
 gem 'jquery-rails'
+gem "twitter-bootstrap-rails", "~> 2.2.6"
 
 group :development, :test do
   gem "rspec-rails", "~> 2.13.0"
