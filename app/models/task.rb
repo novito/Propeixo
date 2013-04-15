@@ -14,9 +14,13 @@ class Task < ActiveRecord::Base
 
   # Return time spend in task (in seconds)
   def time_spent
-    seconds = self.work_intervals
-    .map {|i| (i.end_date || Time.now).to_time - i.start_date.to_time }
-    .reduce(:+)
+    if self.work_intervals.empty?
+      return 0
+    else
+      seconds = self.work_intervals
+      .map {|i| (i.end_date || Time.now).to_time - i.start_date.to_time }
+      .reduce(:+)
+    end
   end
 
   def active_work_interval 
