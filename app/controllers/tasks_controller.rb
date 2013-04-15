@@ -25,7 +25,7 @@ class TasksController < ApplicationController
       flash[:success] = 'Task has been created successfully'
     end
 
-    respond_with [@project, @task]
+    redirect_to project_path(@project)
   end
 
   def edit
